@@ -25,14 +25,15 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
 insert  into `migrations`(`id`,`migration`,`batch`) values 
 (1,'2014_10_12_000000_create_users_table',1),
 (2,'2014_10_12_100000_create_password_resets_table',1),
-(3,'2021_01_12_224150_create_roles_table',1);
+(3,'2021_01_12_224150_create_roles_table',1),
+(4,'2021_01_18_225055_create_tags_table',2);
 
 /*Table structure for table `password_resets` */
 
@@ -65,6 +66,28 @@ CREATE TABLE `roles` (
 insert  into `roles`(`id`,`name`,`slug`,`created_at`,`updated_at`) values 
 (1,'Admin','admin',NULL,NULL),
 (2,'Author','author',NULL,NULL);
+
+/*Table structure for table `tags` */
+
+DROP TABLE IF EXISTS `tags`;
+
+CREATE TABLE `tags` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `tags` */
+
+insert  into `tags`(`id`,`name`,`slug`,`created_at`,`updated_at`) values 
+(1,'Laravel','laravel','2021-01-19 01:07:03','2021-01-19 01:07:03'),
+(2,'Vue js','vue-js','2021-01-19 02:36:45','2021-01-19 02:36:45'),
+(3,'Php','php','2021-01-19 02:39:55','2021-01-19 02:39:55'),
+(4,'Codeigniter','codeigniter','2021-01-19 02:40:51','2021-01-19 02:40:51'),
+(5,'Wordpress','wordpress','2021-01-19 03:40:51','2021-01-19 03:40:51');
 
 /*Table structure for table `users` */
 
