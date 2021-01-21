@@ -4,3 +4,6 @@ source: https://github.com/brian2694/laravel-toastr
 2.sweetalert2
 source: https://sweetalert2.github.io/
 
+3.Intervention Image
+source: http://image.intervention.io/
+

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Tag')
+@section('title', 'Edit')
 
 @push('css')
     
@@ -14,15 +14,17 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        ADD NEW TAG
+                        EDIT TAG
                     </h2>
                 </div>
                 <div class="body">
-                    <form action="{{ route('admin.tag.store') }}" method="POST">
+                    <form action="{{ route('admin.tag.update', $tag->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name">
+                                <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" 
+                                    name="name" value="{{ !empty(old('name')) ? old('name') : $tag->name }}">
                                 <label class="form-label">Tag Name</label>
                                
                             </div>
@@ -33,7 +35,7 @@
                             @enderror
                         </div>
                         <a type="button" class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.tag.index') }}">BACK</a>
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">SAVE</button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">UPDATE</button>
                     </form>
                 </div>
             </div>

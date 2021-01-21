@@ -16,6 +16,27 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`superblog` /*!40100 DEFAULT CHARACTER S
 
 USE `superblog`;
 
+/*Table structure for table `categories` */
+
+DROP TABLE IF EXISTS `categories`;
+
+CREATE TABLE `categories` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `categories` */
+
+insert  into `categories`(`id`,`name`,`slug`,`image`,`created_at`,`updated_at`) values 
+(1,'Bangladesh','bangladesh','bangladesh-2021-01-21-6008ffd258526.jpg','2021-01-21 04:15:14','2021-01-21 04:15:14'),
+(2,'USA','usa','usa-2021-01-21-6009020bdb3d1.jpg','2021-01-21 04:24:44','2021-01-21 04:24:44'),
+(3,'Turkey','turkey','turkey-2021-01-21-60091e7e162f2.jpg','2021-01-21 06:26:07','2021-01-21 06:26:07');
+
 /*Table structure for table `migrations` */
 
 DROP TABLE IF EXISTS `migrations`;
@@ -25,7 +46,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -33,7 +54,8 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (1,'2014_10_12_000000_create_users_table',1),
 (2,'2014_10_12_100000_create_password_resets_table',1),
 (3,'2021_01_12_224150_create_roles_table',1),
-(4,'2021_01_18_225055_create_tags_table',2);
+(4,'2021_01_18_225055_create_tags_table',2),
+(5,'2021_01_21_010317_create_categories_table',3);
 
 /*Table structure for table `password_resets` */
 
@@ -78,16 +100,16 @@ CREATE TABLE `tags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `tags` */
 
 insert  into `tags`(`id`,`name`,`slug`,`created_at`,`updated_at`) values 
 (1,'Laravel','laravel','2021-01-19 01:07:03','2021-01-19 01:07:03'),
-(2,'Vue js','vue-js','2021-01-19 02:36:45','2021-01-19 02:36:45'),
-(3,'Php','php','2021-01-19 02:39:55','2021-01-19 02:39:55'),
-(4,'Codeigniter','codeigniter','2021-01-19 02:40:51','2021-01-19 02:40:51'),
-(5,'Wordpress','wordpress','2021-01-19 03:40:51','2021-01-19 03:40:51');
+(10,'Vue js','vue-js','2021-01-21 00:36:47','2021-01-21 00:36:47'),
+(11,'Codeigniter','codeigniter','2021-01-21 00:37:17','2021-01-21 00:37:17'),
+(12,'Wordpress','wordpress','2021-01-21 00:37:32','2021-01-21 00:37:32'),
+(13,'Drupal','drupal','2021-01-21 00:37:49','2021-01-21 00:37:49');
 
 /*Table structure for table `users` */
 
