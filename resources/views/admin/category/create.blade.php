@@ -57,6 +57,7 @@
 @endsection
 
 @push('js')
+<!-- Preview Image -->
     <script type="text/javascript">
         
         var loadFile = function(event) {
