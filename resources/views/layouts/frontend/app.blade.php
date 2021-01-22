@@ -9,6 +9,9 @@
 
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Favicon-->
+    <link rel="icon" href="{{ asset('storage/favicon.ico') }}" type="image/x-icon">
+
     <!-- Font -->
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
