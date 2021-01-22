@@ -34,8 +34,22 @@ CREATE TABLE `categories` (
 
 insert  into `categories`(`id`,`name`,`slug`,`image`,`created_at`,`updated_at`) values 
 (1,'Bangladesh','bangladesh','bangladesh-2021-01-21-6008ffd258526.jpg','2021-01-21 04:15:14','2021-01-21 04:15:14'),
-(2,'USA','usa','usa-2021-01-21-6009020bdb3d1.jpg','2021-01-21 04:24:44','2021-01-21 04:24:44'),
-(3,'Turkey','turkey','turkey-2021-01-21-60091e7e162f2.jpg','2021-01-21 06:26:07','2021-01-21 06:26:07');
+(2,'USA','usa','usa-2021-01-21-6009020bdb3d1.jpg','2021-01-21 04:24:44','2021-01-21 04:24:44');
+
+/*Table structure for table `category_post` */
+
+DROP TABLE IF EXISTS `category_post`;
+
+CREATE TABLE `category_post` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `category_post` */
 
 /*Table structure for table `migrations` */
 
@@ -46,7 +60,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -55,7 +69,10 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (2,'2014_10_12_100000_create_password_resets_table',1),
 (3,'2021_01_12_224150_create_roles_table',1),
 (4,'2021_01_18_225055_create_tags_table',2),
-(5,'2021_01_21_010317_create_categories_table',3);
+(5,'2021_01_21_010317_create_categories_table',3),
+(6,'2021_01_22_022207_create_posts_table',4),
+(7,'2021_01_22_023148_create_category_post_table',4),
+(8,'2021_01_22_023333_create_post_tag_table',4);
 
 /*Table structure for table `password_resets` */
 
@@ -69,6 +86,45 @@ CREATE TABLE `password_resets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `password_resets` */
+
+/*Table structure for table `post_tag` */
+
+DROP TABLE IF EXISTS `post_tag`;
+
+CREATE TABLE `post_tag` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `tag_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `post_tag` */
+
+/*Table structure for table `posts` */
+
+DROP TABLE IF EXISTS `posts`;
+
+CREATE TABLE `posts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `view_count` int(11) NOT NULL DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `is_approved` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `posts_slug_unique` (`slug`),
+  KEY `posts_user_id_foreign` (`user_id`),
+  CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `posts` */
 
 /*Table structure for table `roles` */
 

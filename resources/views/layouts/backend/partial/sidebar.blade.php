@@ -52,7 +52,7 @@
                         <span>Category</span>
                     </a>
                 </li>
-                <li class="header">System</li>
+                <li class="header">SYSTEM</li>
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
