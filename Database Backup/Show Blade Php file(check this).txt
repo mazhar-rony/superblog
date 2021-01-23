@@ -1,0 +1,1 @@
+for artisan command change app url to http://127.0.0.1:8000 in .env file to display image while using Storage::disk
