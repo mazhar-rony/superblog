@@ -1,0 +1,10 @@
+Try setting
+
+relative_urls: false
+in your tinyMCE.init() function:
+
+tinyMCE.init({
+    [...]
+    relative_urls: false
+});
+This basically tells TinyMCE to use absolute paths for images, emoticons, etc, rather than relative paths.

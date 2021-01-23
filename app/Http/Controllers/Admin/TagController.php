@@ -40,7 +40,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required|unique:tags'
         ]);
 
         $tag = new Tag();
@@ -89,7 +89,7 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|min:3'
+            'name' => 'required|min:3|unique:tags,id'
         ]);
 
         $tag = Tag::find($id);
