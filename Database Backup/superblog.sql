@@ -56,9 +56,7 @@ insert  into `category_post`(`id`,`post_id`,`category_id`,`created_at`,`updated_
 (2,1,2,'2021-01-23 03:10:18','2021-01-23 03:10:18'),
 (3,2,1,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
 (4,3,1,'2021-01-23 04:56:00','2021-01-23 04:56:00'),
-(5,3,2,'2021-01-23 04:56:00','2021-01-23 04:56:00'),
-(6,4,2,'2021-01-23 05:09:42','2021-01-23 05:09:42'),
-(7,4,1,'2021-01-23 05:43:47','2021-01-23 05:43:47');
+(5,3,2,'2021-01-23 04:56:00','2021-01-23 04:56:00');
 
 /*Table structure for table `migrations` */
 
@@ -116,9 +114,7 @@ insert  into `post_tag`(`id`,`post_id`,`tag_id`,`created_at`,`updated_at`) value
 (2,1,10,'2021-01-23 03:10:18','2021-01-23 03:10:18'),
 (3,2,11,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
 (4,2,12,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
-(5,3,12,'2021-01-23 04:56:00','2021-01-23 04:56:00'),
-(6,4,13,'2021-01-23 05:09:42','2021-01-23 05:09:42'),
-(7,4,10,'2021-01-23 05:43:47','2021-01-23 05:43:47');
+(5,3,12,'2021-01-23 04:56:00','2021-01-23 04:56:00');
 
 /*Table structure for table `posts` */
 
@@ -145,10 +141,9 @@ CREATE TABLE `posts` (
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`user_id`,`title`,`slug`,`image`,`body`,`view_count`,`status`,`is_approved`,`created_at`,`updated_at`) values 
-(1,1,'Laravel Tutorial','laravel-tutorial','laravel-tutorial-2021-01-23-600b9398c3803.jpg','<p>This is first post about Laravel Tutorial&nbsp;<img src=\"../../assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>',0,1,1,'2021-01-23 03:10:17','2021-01-23 03:10:17'),
+(1,1,'Laravel Tutorial','laravel-tutorial','laravel-tutorial-2021-01-23-600b9398c3803.jpg','<p>This is first post about Laravel Tutorial&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>',0,1,1,'2021-01-23 03:10:17','2021-01-23 03:10:17'),
 (2,1,'Codeigniter Tutorial','codeigniter-tutorial','codeigniter-tutorial-2021-01-23-600b968b8577a.jpg','<p>this is the first post of Codeigniter&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-laughing.gif\" alt=\"laughing\" />&nbsp;<strong>hello world</strong></p>',0,0,1,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
-(3,1,'Wordpress Tutorial','wordpress-tutorial','wordpress-tutorial-2021-01-23-600bac5f93125.jpg','<p>hello <em><strong>Wordpress&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-innocent.gif\" alt=\"innocent\" /></strong></em></p>',0,1,1,'2021-01-23 04:56:00','2021-01-23 04:56:00'),
-(4,1,'Drupal','drupal','drupal-update-2021-01-23-600bb7928729b.jpg','<p><img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-cry.gif\" alt=\"cry\" />&nbsp;<span style=\"background-color: #800000; color: #ffffff;\">Update</span></p>',0,0,1,'2021-01-23 05:09:42','2021-01-23 05:44:57');
+(3,1,'Wordpress Tutorial','wordpress-tutorial','wordpress-tutorial-2021-01-23-600bac5f93125.jpg','<p>hello <em><strong>Wordpress&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-innocent.gif\" alt=\"innocent\" /></strong></em></p>',0,1,0,'2021-01-23 04:56:00','2021-01-23 04:56:00');
 
 /*Table structure for table `roles` */
 
