@@ -118,7 +118,9 @@ class PostController extends Controller
         //restriction to enter Admin area
         if($post->user_id != Auth::id())
         {
-            return redirect()->route('author.post.index');
+            Toastr::error('You are not authorized to access this post.','Error');
+
+            return redirect()->back();
         }
 
         return view('author.post.show', compact('post'));
@@ -135,7 +137,9 @@ class PostController extends Controller
         //restriction to enter Admin area
         if($post->user_id != Auth::id()) 
         {
-            return redirect()->route('author.post.index');
+            Toastr::error('You are not authorized to access this post.','Error');
+
+            return redirect()->back();
         }
 
         $categories = Category::all();
@@ -153,6 +157,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        //restriction to enter Admin area
+        if($post->user_id != Auth::id()) 
+        {
+            Toastr::error('You are not authorized to access this post.','Error');
+
+            return redirect()->back();
+        }
+
         $this->validate($request, [
             'title' => 'required',
             'image' => 'mimes:png,jpg,jpeg,bmp',
@@ -224,6 +236,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        //restriction to enter Admin area
+        if($post->user_id != Auth::id()) 
+        {
+            Toastr::error('You are not authorized to access this post.','Error');
+
+            return redirect()->back();
+        }
+        
         if (Storage::disk('public')->exists('post/'.$post->image))
         {
             Storage::disk('public')->delete('post/'.$post->image);

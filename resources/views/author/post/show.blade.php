@@ -14,7 +14,7 @@
     </a>
 
     @if ($post->is_approved == false)
-        <button type="button" class="btn btn-warning waves-effect pull-right">
+        <button type="button" class="btn btn-warning waves-effect pull-right" disabled>
             <i class="material-icons">pending</i>
             <span>Need Appoval</span>
         </button>
