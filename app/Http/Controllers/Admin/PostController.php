@@ -6,13 +6,16 @@ use App\Tag;
 use App\Post;
 use App\Category;
 use Carbon\Carbon;
+use App\Subscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewPostNotify;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\AuthorPostApproved;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
@@ -102,6 +105,15 @@ class PostController extends Controller
 
         $post->categories()->attach($categories);
         $post->tags()->attach($tags);
+
+        //send Notifications to Subscribers about new Post
+        $subscribers = Subscriber::all();
+        
+        foreach ($subscribers as $subscriber) 
+        {
+            //on demand notification
+            Notification::route('mail', $subscriber->email)->notify(new NewPostNotify($post));
+        }
 
         Toastr::success('Post Successfully Saved !','Success');
         
@@ -224,6 +236,15 @@ class PostController extends Controller
 
             //send Notifications to Author after Approval
             $post->user->notify(new AuthorPostApproved($post));
+
+            //send Notifications to Subscribers about new Post
+            $subscribers = Subscriber::all();
+            
+            foreach ($subscribers as $subscriber) 
+            {
+                //on demand notification
+                Notification::route('mail', $subscriber->email)->notify(new NewPostNotify($post));
+            }
 
             Toastr::success('Post Successfully Approved !','Success');
         }
