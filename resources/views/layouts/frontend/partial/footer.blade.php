@@ -41,11 +41,18 @@
 
                     <h4 class="title"><b>SUBSCRIBE</b></h4>
                     <div class="input-area">
-                        <form>
-                            <input class="email-input" type="text" placeholder="Enter your email">
+                        <form action="{{ route('subscriber.store') }}" method="POST">
+                            @csrf
+                            <input class="email-input @error('subscriber_email') is-invalid @enderror" 
+                                type="email" name="subscriber_email" placeholder="Enter your email">
                             <button class="submit-btn" type="submit"><i class="icon ion-ios-email-outline"></i></button>
                         </form>
                     </div>
+                    @error('subscriber_email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong style="color: red">{{ $message }}</strong>
+                        </span>
+                    @enderror
 
                 </div><!-- footer-section -->
             </div><!-- col-lg-4 col-md-6 -->
