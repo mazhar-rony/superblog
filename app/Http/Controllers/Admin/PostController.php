@@ -12,6 +12,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\AuthorPostApproved;
 
 class PostController extends Controller
 {
@@ -220,6 +221,9 @@ class PostController extends Controller
             $post->is_approved = true;
 
             $post->save();
+
+            //send Notifications to Author after Approval
+            $post->user->notify(new AuthorPostApproved($post));
 
             Toastr::success('Post Successfully Approved !','Success');
         }
