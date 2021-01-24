@@ -14,12 +14,12 @@
     </a>
 
     @if ($post->is_approved == false)
-        <button type="button" class="btn btn-warning pull-right">
+        <button type="button" class="btn btn-warning waves-effect pull-right">
             <i class="material-icons">pending</i>
             <span>Need Appoval</span>
         </button>
     @else
-        <button type="button" class="btn btn-success pull-right" disabled>
+        <button type="button" class="btn btn-success waves-effect pull-right" disabled>
             <i class="material-icons">done</i>
             <span>Approved</span>
         </button>

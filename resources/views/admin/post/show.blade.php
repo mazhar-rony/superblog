@@ -14,12 +14,19 @@
     </a>
 
     @if ($post->is_approved == false)
-        <button type="button" class="btn btn-warning pull-right">
-            <i class="material-icons">pending</i>
-            <span>Need Appoval</span>
+        <button type="button" class="btn btn-success waves-effect pull-right"
+            onclick="approvePost({{$post->id}})">
+            <i class="material-icons">done</i>
+            <span>Approve</span>
         </button>
+        <form action="{{ route('admin.post.approve', $post->id) }}" method="POST"
+            id="approval-form" style="display: none;">
+            @csrf
+            @method('PUT')
+        </form>
+
     @else
-        <button type="button" class="btn btn-success pull-right" disabled>
+        <button type="button" class="btn btn-success waves-effect pull-right" disabled>
             <i class="material-icons">done</i>
             <span>Approved</span>
         </button>
@@ -93,6 +100,8 @@
 
 <!-- TinyMCE -->
     <script src="{{ asset('assets/backend/plugins/tinymce/tinymce.js') }}"></script>
+<!-- Sweet Alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script type="text/javascript">
         
@@ -117,10 +126,10 @@
             tinyMCE.baseURL = '{{ asset('assets/backend/plugins/tinymce') }}';
         });
 
-    </script>
+    
     
 <!-- Preview Image -->
-    <script type="text/javascript">
+    
         
         var loadFile = function(event) {
             var preview = document.getElementById('preview');
@@ -132,6 +141,49 @@
             URL.revokeObjectURL(preview.src) // free memory
             }
         };
+
           
+<!-- Sweet Alert 2 -->    
+        function approvePost() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                  confirmButton: 'btn btn-success',
+                  cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+              })
+              
+              swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You want to approve this post!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, approve it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+              }).then((result) => {
+                if (result.isConfirmed) {
+
+                  event.preventDefault();
+                  document.getElementById('approval-form').submit();
+                    
+                  swalWithBootstrapButtons.fire(
+                    'Approved!',
+                    'The post has been approved :)',
+                    'success'
+                  )
+                } else if (
+                  /* Read more about handling dismissals below */
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                  swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'The post remain pending :(',
+                    'info'
+                  )
+                }
+              })
+        }
+        
     </script>
 @endpush

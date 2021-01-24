@@ -115,6 +115,12 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        //restriction to enter Admin area
+        if($post->user_id != Auth::id())
+        {
+            return redirect()->route('author.post.index');
+        }
+
         return view('author.post.show', compact('post'));
     }
 
@@ -126,6 +132,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        //restriction to enter Admin area
+        if($post->user_id != Auth::id()) 
+        {
+            return redirect()->route('author.post.index');
+        }
+
         $categories = Category::all();
         $tags = Tag::all();
         
