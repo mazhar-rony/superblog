@@ -7,3 +7,6 @@ source: https://sweetalert2.github.io/
 3.Intervention Image
 source: http://image.intervention.io/
 
+4.Notifications
+source: https://laravel.com/docs/5.8/notifications
+

@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Author;
 
 use App\Tag;
 use App\Post;
+use App\User;
 use App\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewAuthorPost;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
 {
@@ -101,6 +104,10 @@ class PostController extends Controller
 
         $post->categories()->attach($categories);
         $post->tags()->attach($tags);
+
+        //send Notifications to Admins for Approval
+        $users = User::where('role_id', '1')->get();
+        Notification::send($users, new NewAuthorPost($post));
 
         Toastr::success('Post Successfully Saved !','Success');
         
