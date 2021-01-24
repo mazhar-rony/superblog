@@ -47,7 +47,7 @@ CREATE TABLE `category_post` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `category_post` */
 
@@ -55,12 +55,33 @@ insert  into `category_post`(`id`,`post_id`,`category_id`,`created_at`,`updated_
 (1,1,1,'2021-01-23 03:10:18','2021-01-23 03:10:18'),
 (2,1,2,'2021-01-23 03:10:18','2021-01-23 03:10:18'),
 (3,2,1,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
-(4,3,1,'2021-01-23 04:56:00','2021-01-23 04:56:00'),
-(5,3,2,'2021-01-23 04:56:00','2021-01-23 04:56:00'),
 (8,5,1,'2021-01-23 22:40:00','2021-01-23 22:40:00'),
 (9,5,2,'2021-01-23 22:40:00','2021-01-23 22:40:00'),
 (11,7,1,'2021-01-23 23:32:27','2021-01-23 23:32:27'),
-(12,7,2,'2021-01-23 23:32:27','2021-01-23 23:32:27');
+(12,7,2,'2021-01-23 23:32:27','2021-01-23 23:32:27'),
+(13,8,2,'2021-01-24 06:58:58','2021-01-24 06:58:58'),
+(15,11,1,'2021-01-24 08:21:36','2021-01-24 08:21:36'),
+(16,11,2,'2021-01-24 08:21:36','2021-01-24 08:21:36'),
+(17,12,1,'2021-01-24 08:26:46','2021-01-24 08:26:46'),
+(18,13,2,'2021-01-24 22:33:27','2021-01-24 22:33:27');
+
+/*Table structure for table `jobs` */
+
+DROP TABLE IF EXISTS `jobs`;
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) unsigned NOT NULL,
+  `reserved_at` int(10) unsigned DEFAULT NULL,
+  `available_at` int(10) unsigned NOT NULL,
+  `created_at` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `jobs_queue_index` (`queue`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `jobs` */
 
 /*Table structure for table `migrations` */
 
@@ -71,7 +92,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -84,7 +105,8 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (6,'2021_01_22_022207_create_posts_table',4),
 (7,'2021_01_22_023148_create_category_post_table',4),
 (8,'2021_01_22_023333_create_post_tag_table',4),
-(9,'2021_01_24_024044_create_subscribers_table',5);
+(9,'2021_01_24_024044_create_subscribers_table',5),
+(10,'2021_01_24_220747_create_jobs_table',6);
 
 /*Table structure for table `password_resets` */
 
@@ -110,7 +132,7 @@ CREATE TABLE `post_tag` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `post_tag` */
 
@@ -119,14 +141,21 @@ insert  into `post_tag`(`id`,`post_id`,`tag_id`,`created_at`,`updated_at`) value
 (2,1,10,'2021-01-23 03:10:18','2021-01-23 03:10:18'),
 (3,2,11,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
 (4,2,12,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
-(5,3,12,'2021-01-23 04:56:00','2021-01-23 04:56:00'),
 (8,5,1,'2021-01-23 22:40:01','2021-01-23 22:40:01'),
 (9,5,10,'2021-01-23 22:40:01','2021-01-23 22:40:01'),
 (10,5,12,'2021-01-23 22:40:01','2021-01-23 22:40:01'),
 (11,5,11,'2021-01-23 22:53:50','2021-01-23 22:53:50'),
 (14,7,11,'2021-01-23 23:32:27','2021-01-23 23:32:27'),
 (15,7,12,'2021-01-23 23:32:27','2021-01-23 23:32:27'),
-(16,7,13,'2021-01-23 23:32:27','2021-01-23 23:32:27');
+(16,7,13,'2021-01-23 23:32:27','2021-01-23 23:32:27'),
+(17,8,1,'2021-01-24 06:58:58','2021-01-24 06:58:58'),
+(18,8,10,'2021-01-24 06:58:58','2021-01-24 06:58:58'),
+(21,11,1,'2021-01-24 08:21:36','2021-01-24 08:21:36'),
+(22,11,10,'2021-01-24 08:21:36','2021-01-24 08:21:36'),
+(23,11,12,'2021-01-24 08:21:36','2021-01-24 08:21:36'),
+(24,12,1,'2021-01-24 08:26:46','2021-01-24 08:26:46'),
+(25,13,12,'2021-01-24 22:33:27','2021-01-24 22:33:27'),
+(26,13,13,'2021-01-24 22:33:27','2021-01-24 22:33:27');
 
 /*Table structure for table `posts` */
 
@@ -148,16 +177,19 @@ CREATE TABLE `posts` (
   UNIQUE KEY `posts_slug_unique` (`slug`),
   KEY `posts_user_id_foreign` (`user_id`),
   CONSTRAINT `posts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`user_id`,`title`,`slug`,`image`,`body`,`view_count`,`status`,`is_approved`,`created_at`,`updated_at`) values 
 (1,1,'Laravel Tutorial','laravel-tutorial','laravel-tutorial-2021-01-23-600b9398c3803.jpg','<p>This is first post about Laravel Tutorial&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>',0,1,1,'2021-01-23 03:10:17','2021-01-23 03:10:17'),
 (2,1,'Codeigniter Tutorial','codeigniter-tutorial','codeigniter-tutorial-2021-01-23-600b968b8577a.jpg','<p>this is the first post of Codeigniter&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-laughing.gif\" alt=\"laughing\" />&nbsp;<strong>hello world</strong></p>',0,0,1,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
-(3,1,'Wordpress Tutorial','wordpress-tutorial','wordpress-tutorial-2021-01-23-600bac5f93125.jpg','<p>hello <em><strong>Wordpress&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-innocent.gif\" alt=\"innocent\" /></strong></em></p>',0,1,1,'2021-01-23 04:56:00','2021-01-24 01:17:06'),
 (5,2,'Author Post Update','author-post-update','author-post-2021-01-23-600ca5be6d164.jpg','<p>Test Post from Author <strong>Updated</strong></p>',0,1,1,'2021-01-23 22:40:00','2021-01-24 01:34:45'),
-(7,2,'Delete This','delete-this','delete-this-2021-01-23-600cb20a9b3f3.jpg','<p>time to delete this post....</p>\r\n<p><img src=\"https://storage.googleapis.com/website-production/uploads/2018/11/facebook-link-format-770x384.jpg\" alt=\"facebook\" width=\"373\" height=\"186\" /></p>',0,1,0,'2021-01-23 23:32:27','2021-01-24 01:33:56');
+(7,2,'Delete This','delete-this','delete-this-2021-01-23-600cb20a9b3f3.jpg','<p>time to delete this post....</p>\r\n<p><img src=\"https://storage.googleapis.com/website-production/uploads/2018/11/facebook-link-format-770x384.jpg\" alt=\"facebook\" width=\"373\" height=\"186\" /></p>',0,1,1,'2021-01-23 23:32:27','2021-01-24 08:32:09'),
+(8,2,'Post About Notification','post-about-notification','post-about-notification-2021-01-24-600d1ab13121b.jpg','<p>Testing for notification....</p>',0,1,1,'2021-01-24 06:58:57','2021-01-24 07:40:17'),
+(11,1,'Admin Post','admin-post','admin-post-2021-01-24-600d2e10491e7.png','<p>sending mail to subscribers</p>',0,1,1,'2021-01-24 08:21:36','2021-01-24 08:22:38'),
+(12,1,'BMW','bmw','bmw-2021-01-24-600d2f45bafaf.jpg','<p>addj;dkalsd;asda</p>',0,1,1,'2021-01-24 08:26:46','2021-01-24 08:26:46'),
+(13,1,'html 5','html-5','html-5-2021-01-24-600df5b71fb71.jpg','<p>Queue Notification</p>',0,1,1,'2021-01-24 22:33:27','2021-01-24 22:33:27');
 
 /*Table structure for table `roles` */
 

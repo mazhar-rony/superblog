@@ -1,12 +1,16 @@
-1.laravel-toastr
+1.laravel-toastr (for Laravel Alert Message)
 source: https://github.com/brian2694/laravel-toastr
 
-2.sweetalert2
+2.sweetalert2 (for Javascript Alert Message)
 source: https://sweetalert2.github.io/
 
-3.Intervention Image
+3.Intervention Image (for Manipulation Images)
 source: http://image.intervention.io/
 
-4.Notifications
+4.Notifications (for Sending Mails - page waits for sending email)
 source: https://laravel.com/docs/5.8/notifications
+
+5.Queues (for Sending Mails from Database - page reloads immediately)
+source: https://laravel.com/docs/5.8/queues#introduction
+	https://laravel.com/docs/8.x/notifications#queueing-notifications
 
