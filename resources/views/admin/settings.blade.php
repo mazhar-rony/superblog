@@ -25,8 +25,8 @@
                                 </a>
                             </li>
                             <li role="presentation" class="">
-                                <a href="#home_with_icon_title" data-toggle="tab" aria-expanded="true">
-                                    <i class="material-icons">home</i> PASSWORD CHANGE
+                                <a href="#change_password_with_icon_title" data-toggle="tab" aria-expanded="true">
+                                    <i class="material-icons">change_history</i> CHANGE PASSWORD
                                 </a>
                             </li>
                         </ul>
@@ -94,16 +94,12 @@
                                     </div>
                                     <div class="row clearfix">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                            <label for="about">About</label>
+                                            <label for="email_address_2">About : </label>
                                         </div>
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                             <div class="form-group">
-                                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <textarea rows="5" name="about" style="border:solid 1px powderblue;" class="form-control">{{ Auth::user()->about }}</textarea>
-                                                        </div>
-                                                    </div>
+                                                <div class="form-line">
+                                                    <textarea rows="5" name="about" class="form-control">{{ Auth::user()->about }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,14 +111,73 @@
                                     </div>
                                 </form>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="home_with_icon_title">
-                                <b>Home Content</b>
-                                <p>
-                                    Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                    Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                                    pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                                    sadipscing mel.
-                                </p>
+
+
+                            <div role="tabpanel" class="tab-pane fade" id="change_password_with_icon_title">
+                                <form action="{{route('admin.password.update')}}" method="POST" 
+                                    class="form-horizontal">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="old_password">Old Password</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line {{ $errors->has('old_password') ? 'focused error' : '' }}">
+                                                    <input type="password" id="old_password" name="old_password" class="form-control @error('old_password') is-invalid @enderror" 
+                                                        placeholder="Enter Old Password">
+                                                </div>
+                                                @error('old_password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong style="color: red">{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="password">New Password</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line {{ $errors->has('password') ? 'focused error' : '' }}">
+                                                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" 
+                                                        placeholder="Enter New Password">
+                                                </div>
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong style="color: red">{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                            <label for="password_confirmation">Confirm Password</label>
+                                        </div>
+                                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                            <div class="form-group">
+                                                <div class="form-line {{ $errors->has('password_confirmation') ? 'focused error' : '' }}">
+                                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" 
+                                                        placeholder="Enter New Password Again">
+                                                </div>
+                                                @error('password_confirmation')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong style="color: red">{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                                            <button type="submit" class="btn btn-primary m-t-15 waves-effect">UPDATE</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
