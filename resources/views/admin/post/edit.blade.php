@@ -129,7 +129,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <textarea id="tinymce" name="body" class="@error('tags') is-invalid @enderror">
+                        <textarea id="tinymce" name="body" class="@error('body') is-invalid @enderror">
                             {{ $post->body }}
                         </textarea>
                         @error('body')

@@ -9,11 +9,13 @@
 @endpush
 
 @section('content')
-{{-- <div class="slider display-table center-text">
-    <h1 class="title display-table-cell"><b>LOGIN</b></h1>
-</div><!-- slider --> --}}
+
 @section('slider')
-    <h1 class="title display-table-cell"><b>LOGIN</b></h1>
+
+    <div class="slider display-table center-text">
+        <h1 class="title display-table-cell"><b>LOGIN</b></h1>
+    </div>
+    
 @endsection
 
 <section class="blog-area section">

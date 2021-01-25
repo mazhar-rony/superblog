@@ -109,7 +109,7 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <textarea id="tinymce" name="body" class="@error('tags') is-invalid @enderror"></textarea>
+                        <textarea id="tinymce" name="body" class="@error('body') is-invalid @enderror"></textarea>
                         @error('body')
                             <span class="invalid-feedback" role="alert">
                                 <strong style="color: red">{{ $message }}</strong>
