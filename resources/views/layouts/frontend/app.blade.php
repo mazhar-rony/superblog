@@ -32,10 +32,12 @@
 <body>
     @include('layouts.frontend.partial.header')
 
-	<div class="slider display-table center-text">
+	{{--  <div class="slider display-table center-text">
         @yield('slider')
-    </div><!-- slider -->
-
+    </div><!-- slider -->  --}}
+    
+    @yield('slider')
+    
     @yield('content')
 
     @include('layouts.frontend.partial.footer')
@@ -47,6 +49,8 @@
 	<script src="{{ asset('assets/frontend/js/tether.min.js') }}"></script>
 
     <script src="{{ asset('assets/frontend/js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('assets/frontend/js/swiper.js') }}"></script>
 
     <script src="{{ asset('assets/frontend/js/scripts.js') }}"></script>
 
