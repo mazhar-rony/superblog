@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Author;
 
 use App\User;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ class SettingsController extends Controller
 {
     public function index()
     {
-        return view('admin.settings');
+        return view('author.settings');
     }
 
     public function updateProfile(Request $request)
