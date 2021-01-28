@@ -28,13 +28,17 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `categories` */
 
 insert  into `categories`(`id`,`name`,`slug`,`image`,`created_at`,`updated_at`) values 
 (1,'Bangladesh','bangladesh','bangladesh-2021-01-21-6008ffd258526.jpg','2021-01-21 04:15:14','2021-01-21 04:15:14'),
-(2,'USA','usa','usa-2021-01-21-6009020bdb3d1.jpg','2021-01-21 04:24:44','2021-01-21 04:24:44');
+(2,'USA','usa','usa-2021-01-21-6009020bdb3d1.jpg','2021-01-21 04:24:44','2021-01-21 04:24:44'),
+(4,'Turkey','turkey','turkey-2021-01-25-600e0fb034a94.jpg','2021-01-25 00:24:16','2021-01-25 00:24:16'),
+(5,'UK','uk','uk-2021-01-25-600e0fcadfa86.jpg','2021-01-25 00:24:43','2021-01-25 00:24:43'),
+(6,'China','china','china-2021-01-25-600e0fe68cb9a.jpg','2021-01-25 00:25:10','2021-01-25 00:25:10'),
+(7,'Japan','japan','japan-2021-01-25-600e0ff5a56db.jpg','2021-01-25 00:25:26','2021-01-25 00:25:26');
 
 /*Table structure for table `category_post` */
 
@@ -92,7 +96,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -106,7 +110,8 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (7,'2021_01_22_023148_create_category_post_table',4),
 (8,'2021_01_22_023333_create_post_tag_table',4),
 (9,'2021_01_24_024044_create_subscribers_table',5),
-(10,'2021_01_24_220747_create_jobs_table',6);
+(10,'2021_01_24_220747_create_jobs_table',6),
+(11,'2021_01_27_225011_create_post_user_table',7);
 
 /*Table structure for table `password_resets` */
 
@@ -156,6 +161,29 @@ insert  into `post_tag`(`id`,`post_id`,`tag_id`,`created_at`,`updated_at`) value
 (24,12,1,'2021-01-24 08:26:46','2021-01-24 08:26:46'),
 (25,13,12,'2021-01-24 22:33:27','2021-01-24 22:33:27'),
 (26,13,13,'2021-01-24 22:33:27','2021-01-24 22:33:27');
+
+/*Table structure for table `post_user` */
+
+DROP TABLE IF EXISTS `post_user`;
+
+CREATE TABLE `post_user` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) unsigned NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `post_user_post_id_foreign` (`post_id`),
+  CONSTRAINT `post_user_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `post_user` */
+
+insert  into `post_user`(`id`,`post_id`,`user_id`,`created_at`,`updated_at`) values 
+(2,12,1,'2021-01-28 01:10:54','2021-01-28 01:10:54'),
+(5,7,1,'2021-01-28 01:37:58','2021-01-28 01:37:58'),
+(6,13,2,'2021-01-28 02:37:19','2021-01-28 02:37:19'),
+(8,7,2,'2021-01-28 02:37:41','2021-01-28 02:37:41');
 
 /*Table structure for table `posts` */
 
@@ -277,8 +305,8 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`role_id`,`name`,`username`,`email`,`email_verified_at`,`password`,`image`,`about`,`remember_token`,`created_at`,`updated_at`) values 
-(1,1,'Md. Admin','admin','mazhar.rony@gmail.com',NULL,'$2y$10$UmQfpuPShhN15Wxwhf9BL.c0JI5.WkaSIKTTTU.5qhThmQ5ksRk9.','default.png',NULL,NULL,NULL,NULL),
-(2,2,'Md. Author','author','imran@gmail.com',NULL,'$2y$10$d7auKQcAb1LeiseAZoVu2OJ1FhPIaVI3UiocRtgugCWWYPGtcN6PG','default.png',NULL,NULL,NULL,NULL);
+(1,1,'Md. Admin','admin','mazhar.rony@gmail.com',NULL,'$2y$10$8c52uegf8RB9hUM78b3eau6y/j54oC0yP60sCT5IuYw4/IMNRXq1m','md-admin-2021-01-25-600e51db16543.jpg','Here is your Admin',NULL,NULL,'2021-01-25 06:29:02'),
+(2,2,'Md. Author','author','imran@gmail.com',NULL,'$2y$10$R4he6vmBEvwEWS77baNuh.qTsK7zVpaQR9bWosO/ZdKWrQr.UNCM6','md-author-imran-2021-01-27-6011e8052e42a.jpg','Imran Hossain Adib',NULL,NULL,'2021-01-27 22:35:43');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
