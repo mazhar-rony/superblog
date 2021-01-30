@@ -81,7 +81,7 @@
                                     @endguest
 
                                 </li>
-                                {{-- <li><a href="#"><i class="ion-chatbubble"></i>{{ $post->comments->count() }}</a></li> --}}
+                                <li><a href="#"><i class="ion-chatbubble"></i>{{ $post->comments->count() }}</a></li>
                                 <li><a href="#"><i class="ion-eye"></i>{{ $post->view_count }}</a></li>
                             </ul>
 
@@ -154,7 +154,7 @@
                                                 })"><i class="ion-heart"></i>{{ $randompost->favorite_to_users->count() }}</a>
                                             @else
                                                 <a href="javascript:void(0);" onclick="document.getElementById('favorite-form-{{ $randompost->id }}').submit();"
-                                                   class="{{ !Auth::user()->favorite_posts->where('pivot.post_id',$randompost->id)->count()  == 0 ? 'favorite_posts' : ''}}"><i class="ion-heart"></i>{{ $post->favorite_to_users->count() }}</a>
+                                                   class="{{ !Auth::user()->favorite_posts->where('pivot.post_id',$randompost->id)->count()  == 0 ? 'favorite_posts' : ''}}"><i class="ion-heart"></i>{{ $randompost->favorite_to_users->count() }}</a>
 
                                                 <form id="favorite-form-{{ $randompost->id }}" method="POST" action="{{ route('post.favorite',$randompost->id) }}" style="display: none;">
                                                     @csrf
@@ -162,8 +162,8 @@
                                             @endguest
 
                                         </li>
-                                        {{-- <li><a href="#"><i class="ion-chatbubble"></i>{{ $randompost->comments->count() }}</a></li>
-                                        <li><a href="#"><i class="ion-eye"></i>{{ $randompost->view_count }}</a></li> --}}
+                                        <li><a href="#"><i class="ion-chatbubble"></i>{{ $randompost->comments->count() }}</a></li>
+                                        <li><a href="#"><i class="ion-eye"></i>{{ $randompost->view_count }}</a></li>
                                     </ul>
 
                                 </div><!-- blog-info -->
@@ -176,7 +176,7 @@
         </div><!-- container -->
     </section>
 
-    {{-- <section class="comment-section">
+    <section class="comment-section">
         <div class="container">
             <h4><b>POST COMMENT</b></h4>
             <div class="row">
@@ -244,7 +244,7 @@
             </div><!-- row -->
 
         </div><!-- container -->
-    </section> --}}
+    </section>
 
 
 @endsection

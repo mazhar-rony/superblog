@@ -69,6 +69,30 @@ insert  into `category_post`(`id`,`post_id`,`category_id`,`created_at`,`updated_
 (17,12,1,'2021-01-24 08:26:46','2021-01-24 08:26:46'),
 (18,13,2,'2021-01-24 22:33:27','2021-01-24 22:33:27');
 
+/*Table structure for table `comments` */
+
+DROP TABLE IF EXISTS `comments`;
+
+CREATE TABLE `comments` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `comments_post_id_foreign` (`post_id`),
+  KEY `comments_user_id_foreign` (`user_id`),
+  CONSTRAINT `comments_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `comments` */
+
+insert  into `comments`(`id`,`post_id`,`user_id`,`comment`,`created_at`,`updated_at`) values 
+(1,11,1,'Nice Article...','2021-01-30 23:09:00','2021-01-30 23:09:00'),
+(2,11,2,'thanks for the post :)','2021-01-30 23:11:04','2021-01-30 23:11:04');
+
 /*Table structure for table `jobs` */
 
 DROP TABLE IF EXISTS `jobs`;
@@ -96,7 +120,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
@@ -111,7 +135,8 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (8,'2021_01_22_023333_create_post_tag_table',4),
 (9,'2021_01_24_024044_create_subscribers_table',5),
 (10,'2021_01_24_220747_create_jobs_table',6),
-(11,'2021_01_27_225011_create_post_user_table',7);
+(11,'2021_01_27_225011_create_post_user_table',7),
+(12,'2021_01_30_215221_create_comments_table',8);
 
 /*Table structure for table `password_resets` */
 
@@ -175,7 +200,7 @@ CREATE TABLE `post_user` (
   PRIMARY KEY (`id`),
   KEY `post_user_post_id_foreign` (`post_id`),
   CONSTRAINT `post_user_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `post_user` */
 
@@ -183,7 +208,8 @@ insert  into `post_user`(`id`,`post_id`,`user_id`,`created_at`,`updated_at`) val
 (2,12,1,'2021-01-28 01:10:54','2021-01-28 01:10:54'),
 (5,7,1,'2021-01-28 01:37:58','2021-01-28 01:37:58'),
 (6,13,2,'2021-01-28 02:37:19','2021-01-28 02:37:19'),
-(8,7,2,'2021-01-28 02:37:41','2021-01-28 02:37:41');
+(8,7,2,'2021-01-28 02:37:41','2021-01-28 02:37:41'),
+(10,11,1,'2021-01-30 23:05:46','2021-01-30 23:05:46');
 
 /*Table structure for table `posts` */
 
@@ -213,9 +239,9 @@ insert  into `posts`(`id`,`user_id`,`title`,`slug`,`image`,`body`,`view_count`,`
 (1,1,'Laravel Tutorial','laravel-tutorial','laravel-tutorial-2021-01-23-600b9398c3803.jpg','<p>This is first post about Laravel Tutorial&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>',0,1,1,'2021-01-23 03:10:17','2021-01-23 03:10:17'),
 (2,1,'Codeigniter Tutorial','codeigniter-tutorial','codeigniter-tutorial-2021-01-23-600b968b8577a.jpg','<p>this is the first post of Codeigniter&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-laughing.gif\" alt=\"laughing\" />&nbsp;<strong>hello world</strong></p>',0,0,1,'2021-01-23 03:22:52','2021-01-23 03:22:52'),
 (5,2,'Author Post Update','author-post-update','author-post-2021-01-23-600ca5be6d164.jpg','<p>Test Post from Author <strong>Updated</strong></p>',0,1,1,'2021-01-23 22:40:00','2021-01-24 01:34:45'),
-(7,2,'Delete This','delete-this','delete-this-2021-01-23-600cb20a9b3f3.jpg','<p>time to delete this post....</p>\r\n<p><img src=\"https://storage.googleapis.com/website-production/uploads/2018/11/facebook-link-format-770x384.jpg\" alt=\"facebook\" width=\"373\" height=\"186\" /></p>',0,1,1,'2021-01-23 23:32:27','2021-01-24 08:32:09'),
+(7,2,'Delete This','delete-this','delete-this-2021-01-23-600cb20a9b3f3.jpg','<p>time to delete this post....</p>\r\n<p><img src=\"https://storage.googleapis.com/website-production/uploads/2018/11/facebook-link-format-770x384.jpg\" alt=\"facebook\" width=\"373\" height=\"186\" /></p>',2,1,1,'2021-01-23 23:32:27','2021-01-28 05:08:23'),
 (8,2,'Post About Notification','post-about-notification','post-about-notification-2021-01-24-600d1ab13121b.jpg','<p>Testing for notification....</p>',0,1,1,'2021-01-24 06:58:57','2021-01-24 07:40:17'),
-(11,1,'Admin Post','admin-post','admin-post-2021-01-24-600d2e10491e7.png','<p>sending mail to subscribers</p>',0,1,1,'2021-01-24 08:21:36','2021-01-24 08:22:38'),
+(11,1,'Admin Post','admin-post','admin-post-2021-01-24-600d2e10491e7.png','<p>sending mail to subscribers</p>',2,1,1,'2021-01-24 08:21:36','2021-01-30 23:10:26'),
 (12,1,'BMW','bmw','bmw-2021-01-24-600d2f45bafaf.jpg','<p>addj;dkalsd;asda</p>',0,1,1,'2021-01-24 08:26:46','2021-01-24 08:26:46'),
 (13,1,'html 5','html-5','html-5-2021-01-24-600df5b71fb71.jpg','<p>Queue Notification</p>',0,1,1,'2021-01-24 22:33:27','2021-01-24 22:33:27');
 
