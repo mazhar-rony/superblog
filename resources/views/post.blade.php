@@ -204,7 +204,7 @@
 
                     <h4><b>COMMENTS({{ $post->comments()->count() }})</b></h4>
                     @if($post->comments->count() > 0)
-                        @foreach($post->comments as $comment)
+                        @foreach($post->comments()->orderBy('comment', 'desc')->get() as $comment)
                             <div class="commnets-area ">
 
                                 <div class="comment">

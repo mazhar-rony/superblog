@@ -39,6 +39,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin', 'mi
 
     Route::get('/favorite', 'FavoriteController@index')->name('favorite.index');
 
+    Route::get('/comments', 'CommentController@index')->name('comment.index');
+    Route::delete('/comments/{id}', 'CommentController@destroy')->name('comment.destroy');
+
     Route::get('/subscriber', 'SubscriberController@index')->name('subscriber.index');
     Route::delete('/subscriber/{subscriber}', 'SubscriberController@destroy')->name('subscriber.destroy');
 });
@@ -53,4 +56,7 @@ Route::group(['as' => 'author.', 'prefix' => 'author', 'namespace' => 'Author', 
     Route::resource('post', 'PostController');
 
     Route::get('/favorite', 'FavoriteController@index')->name('favorite.index');
+
+    Route::get('/comments', 'CommentController@index')->name('comment.index');
+    Route::delete('/comments/{id}', 'CommentController@destroy')->name('comment.destroy');
 });
