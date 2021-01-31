@@ -7,7 +7,7 @@
                 <div class="footer-section">
 
                     <a class="logo" href="#"><img src="{{ asset('assets/frontend/images/logo.png') }}" alt="Logo Image"></a>
-                    <p class="copyright">Bona @ 2017. All rights reserved.</p>
+                    <p class="copyright">{{ config('app.name') }} &copy; {{ now()->year }}. All rights reserved.</p>
                     <p class="copyright">Designed by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
                     <ul class="icons">
                         <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>

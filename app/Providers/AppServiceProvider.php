@@ -23,9 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.frontend.partial.footer', function($view){
+        /*view()->composer('layouts.frontend.partial.footer', function($view){
             $categories = \App\Category::all();
             $view->with('categories', $categories);
-        });
+        });*/
     }
 }

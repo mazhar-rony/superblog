@@ -21,7 +21,7 @@
         <div class="container">
 
             <div class="row">
-                @forelse($tag->posts as $post)
+                @forelse($posts as $post)
                     <div class="col-lg-4 col-md-6">
                         <div class="card h-100">
                             <div class="single-post post-style-1">
