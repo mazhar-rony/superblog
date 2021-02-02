@@ -85,7 +85,7 @@ CREATE TABLE `comments` (
   KEY `comments_user_id_foreign` (`user_id`),
   CONSTRAINT `comments_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `comments` */
 
@@ -94,7 +94,8 @@ insert  into `comments`(`id`,`post_id`,`user_id`,`comment`,`created_at`,`updated
 (3,11,1,'You are Welcome !','2021-01-31 00:52:25','2021-01-31 00:52:25'),
 (4,7,2,'Apple Products...','2021-01-31 01:28:32','2021-01-31 01:28:32'),
 (5,7,1,'good post :)','2021-01-31 01:29:55','2021-01-31 01:29:55'),
-(6,5,1,'like this post very much :)','2021-01-31 01:37:02','2021-01-31 01:37:02');
+(6,5,1,'like this post very much :)','2021-01-31 01:37:02','2021-01-31 01:37:02'),
+(7,1,3,'where are you ?','2021-02-02 00:16:28','2021-02-02 00:16:28');
 
 /*Table structure for table `jobs` */
 
@@ -240,13 +241,13 @@ CREATE TABLE `posts` (
 /*Data for the table `posts` */
 
 insert  into `posts`(`id`,`user_id`,`title`,`slug`,`image`,`body`,`view_count`,`status`,`is_approved`,`created_at`,`updated_at`) values 
-(1,1,'Laravel Tutorial','laravel-tutorial','laravel-tutorial-2021-01-23-600b9398c3803.jpg','<p>This is first post about Laravel Tutorial&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>',1,1,1,'2021-01-23 03:10:17','2021-01-31 05:37:41'),
+(1,1,'Laravel Tutorial','laravel-tutorial','laravel-tutorial-2021-01-23-600b9398c3803.jpg','<p>This is first post about Laravel Tutorial&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-cool.gif\" alt=\"cool\" /></p>',2,1,1,'2021-01-23 03:10:17','2021-02-02 00:15:59'),
 (2,1,'Codeigniter Tutorial','codeigniter-tutorial','codeigniter-tutorial-2021-01-23-600b968b8577a.jpg','<p>this is the first post of Codeigniter&nbsp;<img src=\"/assets/backend/plugins/tinymce/plugins/emoticons/img/smiley-laughing.gif\" alt=\"laughing\" />&nbsp;<strong>hello world</strong></p>',1,0,1,'2021-01-23 03:22:52','2021-01-31 05:27:10'),
-(5,2,'Author Post Update','author-post-update','author-post-2021-01-23-600ca5be6d164.jpg','<p>Test Post from Author <strong>Updated</strong></p>',1,1,1,'2021-01-23 22:40:00','2021-01-31 01:36:15'),
+(5,2,'Author Post Update','author-post-update','author-post-2021-01-23-600ca5be6d164.jpg','<p>Test Post from Author <strong>Updated</strong></p>',2,1,1,'2021-01-23 22:40:00','2021-02-01 23:40:46'),
 (7,2,'Delete This','delete-this','delete-this-2021-01-23-600cb20a9b3f3.jpg','<p>time to delete this post....</p>\r\n<p><img src=\"https://storage.googleapis.com/website-production/uploads/2018/11/facebook-link-format-770x384.jpg\" alt=\"facebook\" width=\"373\" height=\"186\" /></p>',4,1,1,'2021-01-23 23:32:27','2021-01-31 01:29:23'),
 (8,2,'Post About Notification','post-about-notification','post-about-notification-2021-01-24-600d1ab13121b.jpg','<p>Testing for notification....</p>',1,1,1,'2021-01-24 06:58:57','2021-01-31 01:05:54'),
-(11,1,'Admin Post','admin-post','admin-post-2021-01-24-600d2e10491e7.png','<p>sending mail to subscribers</p>',5,1,1,'2021-01-24 08:21:36','2021-01-31 03:31:03'),
-(12,1,'BMW','bmw','bmw-2021-01-24-600d2f45bafaf.jpg','<p>addj;dkalsd;asda</p>',1,1,1,'2021-01-24 08:26:46','2021-01-31 03:30:25'),
+(11,1,'Admin Post','admin-post','admin-post-2021-01-24-600d2e10491e7.png','<p>sending mail to subscribers</p>',6,1,1,'2021-01-24 08:21:36','2021-02-01 23:13:20'),
+(12,1,'BMW','bmw','bmw-2021-01-24-600d2f45bafaf.jpg','<p>changes happen...</p>',1,1,1,'2021-01-24 08:26:46','2021-02-02 00:25:52'),
 (13,1,'html 5','html-5','html-5-2021-01-24-600df5b71fb71.jpg','<p>Queue Notification</p>',0,1,1,'2021-01-24 22:33:27','2021-01-24 22:33:27');
 
 /*Table structure for table `roles` */
@@ -330,13 +331,14 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`username`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`role_id`,`name`,`username`,`email`,`email_verified_at`,`password`,`image`,`about`,`remember_token`,`created_at`,`updated_at`) values 
-(1,1,'Md. Admin','admin','mazhar.rony@gmail.com',NULL,'$2y$10$8c52uegf8RB9hUM78b3eau6y/j54oC0yP60sCT5IuYw4/IMNRXq1m','md-admin-2021-01-25-600e51db16543.jpg','Here is your Admin',NULL,NULL,'2021-01-25 06:29:02'),
-(2,2,'Md. Author','author','imran@gmail.com',NULL,'$2y$10$R4he6vmBEvwEWS77baNuh.qTsK7zVpaQR9bWosO/ZdKWrQr.UNCM6','md-author-imran-2021-01-27-6011e8052e42a.jpg','Imran Hossain Adib',NULL,NULL,'2021-01-27 22:35:43');
+(1,1,'Md. Admin','admin','mazhar.rony@gmail.com',NULL,'$2y$10$8c52uegf8RB9hUM78b3eau6y/j54oC0yP60sCT5IuYw4/IMNRXq1m','md-admin-2021-01-25-600e51db16543.jpg','Here is your Admin',NULL,'2021-01-25 06:29:02','2021-01-25 06:29:02'),
+(2,2,'Md. Author','author','imran@gmail.com',NULL,'$2y$10$R4he6vmBEvwEWS77baNuh.qTsK7zVpaQR9bWosO/ZdKWrQr.UNCM6','md-author-imran-2021-01-27-6011e8052e42a.jpg','Imran Hossain Adib',NULL,'2021-01-27 22:35:43','2021-01-27 22:35:43'),
+(3,2,'Imran Hossain','adib','adib@gmail.com',NULL,'$2y$10$HF3DWR4k.RMI9nfuzIibLOUruPjRELY0MgosivKlutgEjAyHhjXR2','imran-hossain-2021-02-02-60189b2ddb5c9.png','this is may new account',NULL,'2021-02-01 22:31:58','2021-02-02 00:22:07');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

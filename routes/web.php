@@ -18,6 +18,8 @@ Route::get('/tag/{slug}', 'PostController@postByTag')->name('tag.posts');
 
 Route::post('/subscriber', 'SubscriberController@store')->name('subscriber.store');
 
+Route::get('/profile/{username}', 'AuthorController@profile')->name('author.profile');
+
 Route::get('/search', 'SearchController@search')->name('search');
 
 Auth::routes();
