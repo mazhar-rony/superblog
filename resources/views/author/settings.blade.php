@@ -82,7 +82,17 @@
                                             <div class="form-group">
                                                 <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" name="image" onchange="loadFile(event)">
                                                     
+                                                @if (isset(Auth::user()->image))
+                                
+                                                <img id="preview" src="{{ Storage::disk('public')->url('profile/'.Auth::user()->image) }}"
+                                                height="100px" width="100px" alt="Profile Image">
+                                            
+                                                @else
+                                                {
                                                     <img id="preview">
+                                                }
+                                                    
+                                                @endif
                                                 
                                                 @error('image')
                                                     <span class="invalid-feedback" role="alert">
